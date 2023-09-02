@@ -79,7 +79,6 @@ void print_num(int num)
         c = num + '0';
         write(1, &c, 1);
     }
-
 }
 
 int main(int ac, char **argv)

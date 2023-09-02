@@ -33,6 +33,20 @@ void	ft_lstadd_back(t_list **lst, t_list *node)
         ft_lst_last(*lst)->next = node;
 }
 
+void    ft_cleanlst(t_list *head)
+{
+    t_list  *temp;
+    t_list  *temp2;
+
+    temp = head;
+    while (temp)
+    {
+        temp2 = temp->next;
+        free(temp);
+        temp = temp2;
+    }
+}
+
 int	ft_lstsize(t_list *begin_list)
 {
     t_list  *temp;
@@ -69,4 +83,5 @@ int main(void)
         i++;
     }
     printf("lst size: %d \n", ft_lstsize(head));
+    ft_cleanlst(head);
 }
