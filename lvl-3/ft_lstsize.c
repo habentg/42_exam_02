@@ -10,28 +10,27 @@ t_list *ft_lstcreate(int num)
         exit(0);
     newnode->value = num;
     newnode->next = NULL;
-    printf("node created val: %d\n", newnode->value);
     return (newnode);
 }
 
-void	ft_lstadd_back(t_list **head, t_list *node)
+t_list  *ft_lst_last(t_list *head)
 {
-    t_list  *lst;
-
-    lst = *head;
-    if (lst == NULL)
-        lst = node;
-    else
+    if (!head)
+        printf("head empty");
+    while (head != NULL)
     {
-        printf("lst: %d\n", lst->value);
-        while (lst != NULL)
-        {
-            if (lst->next == NULL)
-                (lst)->next = node;
-            lst = (lst)->next;
-        }
-    }
-    printf("%d \n", (lst)->value);
+        if (head->next == NULL)
+            return (head);
+        head = head->next;
+    } 
+    return (0);
+}
+void	ft_lstadd_back(t_list **lst, t_list *node)
+{
+	if (*lst == NULL)
+		*lst = node;
+    else
+        ft_lst_last(*lst)->next = node;
 }
 
 int	ft_lstsize(t_list *begin_list)
@@ -44,7 +43,6 @@ int	ft_lstsize(t_list *begin_list)
     while(temp)
     {
         count++;
-        printf("node value: %d \n", (temp->value));
         temp = temp->next;
     }
     return (count);
